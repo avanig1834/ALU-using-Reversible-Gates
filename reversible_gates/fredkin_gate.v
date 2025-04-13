@@ -3,8 +3,8 @@ input a_f, b_f, c_f;
 output p_f, q_f, r_f;
 
 assign p_f = a_f;
-assign q_f = ((~a_f) & b_f) ^ (a_f & c_f);
-assign q_f = ((~a_f) & c_f) ^ (a_f & b_f);
+assign q_f = ((~a_f) & b_f) | (a_f & c_f);
+assign r_f = ((~a_f) & c_f) | (a_f & b_f);
 
 // alternately can be written as
 // assign Q = (a_f == 0) ? b_f : c_f;
