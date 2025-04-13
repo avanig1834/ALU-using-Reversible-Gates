@@ -1,0 +1,20 @@
+iverilog -o alu_sim alu_tb.v alu.v full_adder.v full_subtractor.v peres_gate.v
+vvp alu_sim
+gtkwave alu_tb.vcd
+
+
+IMPORTANT:
+1- if testbench contains the respective .v file, only mention 'filename_tb.v' file in command line
+2- always include the files that are being instantiated in other top modules
+3- in order to compile the files for debugging enter the following command in cmd - iverilog test.out filename.v
+4- opcodes:
+    000 - addition
+    001 - subtraction
+    010 - multiplication
+    011 - division
+    100 - and operation
+    101 - or 
+    110 - xor
+    111 - xnor
+
+5- while instantiating the modules in top module always write the name of module (used while creating one) not the file name
