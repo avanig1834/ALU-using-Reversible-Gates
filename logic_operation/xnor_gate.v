@@ -1,5 +1,5 @@
-`include "../reversible_gates/feynman_gate.v"
-`include "xor_gate.v"
+// `include "reversible_gates/feynman_gate.v"
+// `include "logic_operation/xor_gate.v"
 
 module xnor_op(a,b,out);
 input [3:0] a,b;

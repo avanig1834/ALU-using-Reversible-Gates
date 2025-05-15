@@ -4,20 +4,24 @@
 `include "logic_operation/xor_gate.v"
 `include "logic_operation/or_gate.v"
 `include "logic_operation/xnor_gate.v"
+`include "multiplier/multiplier.v"
+`include "divider/divider.v"
 
 module alu(
     input [3:0] a, b,
     input [2:0] opcode,
     output reg [7:0] out,
     output reg carry_borrow, zero, parity, sign, overflow,
-    output reg [3:0] and_out, xor_out, or_out, xnor_out
+    output reg [3:0] and_out, xor_out, or_out, xnor_out,
+    output reg [7:0] multiply_result,
+    output reg [3:0] division_result, remainder_result
 );
 
 // Wires to connect submodules
-wire [7:0] add_out, sub_out;
+wire [7:0] add_out, sub_out, multiply_out;
 wire add_carry, add_zero, add_parity, add_sign, add_overflow;
 wire sub_borrow, sub_zero, sub_parity, sub_sign, sub_overflow;
-wire [3:0] and_op, xor_op, or_op, xnor_op;
+wire [3:0] and_op, xor_op, or_op, xnor_op, divide_out, remainder_out;
 
 // Instantiate adder
 full_adder adder_inst (
@@ -70,6 +74,19 @@ xnor_op xnor_inst (
     .b(b),
     .out(xnor_op)
 );
+
+multiplier multiply_inst (
+    .a(a),
+    .b(b),
+    .result(multiply_out)
+);
+
+divider divide_inst (
+    .a(a),
+    .b(b),
+    .quotient(divide_out),
+    .remainder(remainder_out)
+);
 // Main control logic based on opcode
 always @(*) begin
     case(opcode)
@@ -88,6 +105,13 @@ always @(*) begin
             parity = sub_parity;
             sign = sub_sign;
             overflow = sub_overflow;
+        end
+        3'b010: begin
+            multiply_result = multiply_out;
+        end
+        3'b011: begin
+            division_result = divide_out;
+            remainder_result = remainder_out;
         end
         3'b100: begin // logical and operator
             and_out = and_op;
