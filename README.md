@@ -13,13 +13,10 @@ Reversible logic circuits differ from traditional logic by ensuring that no info
 ## Features
 
 -  4-bit ALU using reversible logic gates
--  Supports:
-  - Addition, Subtraction
-  - AND, OR, XOR, NOT
--  Implemented with:
-  - **Toffoli**, **Fredkin**, **Peres**, **Feynman gates**
+-  Supports: Addition, Subtraction, AND, OR, XOR, XNOR
+-  Implemented with: **Toffoli**, **Fredkin**, **Peres**, **Feynman gates**
 -  Reduced quantum cost, garbage outputs, and constant inputs
--  Simulated in tools like **Xilinx**
+-  Simulated in **Xilinx**
 
 ---
 
@@ -28,7 +25,7 @@ Reversible logic circuits differ from traditional logic by ensuring that no info
 | Operation Type | Description                   | Reversible Gates Used        |
 |----------------|-------------------------------|-------------------------------|
 | Arithmetic     | Add/Sub using full adders     | `Toffoli`, `Peres`, `Feynman` |
-| Logical        | Bitwise AND, OR, XOR, NOT     | `Fredkin`, `Peres`, `Feynman` |
+| Logical        | Bitwise AND, OR, XOR, XNOR     | `Fredkin`, `Peres`, `Feynman` |
 
 
 ---
